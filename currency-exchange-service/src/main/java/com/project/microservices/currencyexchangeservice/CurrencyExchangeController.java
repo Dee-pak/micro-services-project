@@ -1,6 +1,6 @@
 package com.project.microservices.currencyexchangeservice;
 
-import java.math.BigDecimal;
+import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -17,7 +17,7 @@ public class CurrencyExchangeController {
 	@Autowired
 	private ExchangeValueRepository repository;
 
-	@GetMapping("/currency-exchange/from/{from}/to/{to}")
+	@GetMapping(value = "/currency-exchange/from/{from}/to/{to}", produces = MediaType.APPLICATION_JSON)
 	public ExchangeValue retrieveExchangeValue(@PathVariable String from, @PathVariable String to) {
 		ExchangeValue exchangeValue = repository.findByFromAndTo(from, to);
 
